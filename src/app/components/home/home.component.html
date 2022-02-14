@@ -1,0 +1,36 @@
+<div class="row m-2" *ngIf="!selFruit">
+    <div class="card pr-3" [style.background-color]="obj.color" style="margin:5px;width: 18rem;height:200px;" *ngFor="let obj of fruitsList">
+        <div class="card-body">
+         <a href="javascript:;" (click)="getFruit(obj.key)"> <h5 class="card-title" style="display:flex;justify-content:center;padding-top:30%">{{obj.key}}</h5></a>
+    </div>
+</div>
+</div>
+
+<div class="row" *ngIf="selFruit" style="margin:5px;">
+    <div class="p-2 ml-3"><button class="btn btn-primary btn-sm float-right " (click)="getAllFruits()">Back</button></div>
+    <div class="card pr-3" style="width: 18rem;height:200px;" [style.background-color]="selFruit.color"> 
+        <div class="card-body">
+         <h5 class="card-title" style="display:flex;justify-content:center;padding-top:30%">{{selFruit?.name}}</h5>
+         <a href="#" class="card-link">Quantity: {{selFruit?.quantity}}</a>
+          <a href="#" class="card-link">Price: {{selFruit?.price}}</a>
+          <div style="padding-top:20px;text-align:end">
+         <a href="javascript:;" (click)="addToCart();">Add to Cart</a>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="selCartDetaiilsList.length" style="margin:5px;">
+    <h2>Added Items</h2>
+    <div class="pr-3 col-sm-6">
+        <li class="list-group-item d-flex justify-content-between align-items-start" *ngFor="let obj of selCartDetaiilsList">
+            <div class="ms-2 me-auto">
+              <span class="fw-bold">{{obj.key}}</span>
+              <span style="padding-left:50px;">Price: <span class="badge bg-primary rounded-pill">{{obj.data.price}}</span> </span>
+              <span style="padding-left:50px;">Quantity: <span class="badge bg-primary rounded-pill">{{obj.data.quantity}}</span></span>
+            </div>
+        </li>
+    </div>
+    <div class="p-2 ml-3"><button class="btn btn-success btn-sm float-right " (click)="saveCart()">Submit</button></div>
+</div>
+
